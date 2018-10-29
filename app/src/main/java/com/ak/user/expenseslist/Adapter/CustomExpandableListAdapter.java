@@ -33,7 +33,8 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter
 
     @Override
     public int getChildrenCount(int i) {
-        return listItem.size();
+        return listItem.get(listTitle.get(i)).size();
+        //return listItem.size();
     }
 
     @Override
