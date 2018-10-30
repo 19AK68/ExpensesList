@@ -10,16 +10,16 @@ import android.widget.TextView;
 
 import com.ak.user.expenseslist.R;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CustomExpandableListAdapter extends BaseExpandableListAdapter
 {
     private Context context;
     private List<String> listTitle;
-    private Map<String,List<String>> listItem;
+    private HashMap<String,List<String>> listItem;
 
-    public CustomExpandableListAdapter(Context context, List<String> listTitle, Map<String, List<String>> listItem)
+    public CustomExpandableListAdapter(Context context, List<String> listTitle, HashMap<String, List<String>> listItem)
     {
         this.context = context;
         this.listTitle = listTitle;
