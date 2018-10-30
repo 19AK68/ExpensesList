@@ -11,15 +11,16 @@ import android.widget.TextView;
 import com.ak.user.expenseslist.R;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class CustomExpandableListAdapter extends BaseExpandableListAdapter
 {
     private Context context;
     private List<String> listTitle;
-    private HashMap<String,List<String>> listItem;
+    private LinkedHashMap<String,List<String>> listItem;
 
-    public CustomExpandableListAdapter(Context context, List<String> listTitle, HashMap<String, List<String>> listItem)
+    public CustomExpandableListAdapter(Context context, List<String> listTitle, LinkedHashMap<String, List<String>> listItem)
     {
         this.context = context;
         this.listTitle = listTitle;

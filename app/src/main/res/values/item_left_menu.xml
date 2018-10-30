@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="titel1">Android Programing</string>
+    <string name="titel1">Операции</string>
     <string name="titel2">iOS Programing</string>
     <string name="titel3">Xamarin Programing</string>
 

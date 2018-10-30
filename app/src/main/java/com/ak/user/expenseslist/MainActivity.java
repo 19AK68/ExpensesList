@@ -20,6 +20,7 @@ import com.ak.user.expenseslist.Interface.NavigationManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity
     private ExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;
     private List<String> lstTitle;
-    private HashMap<String,List<String>> lstChild;
+    private LinkedHashMap<String,List<String>> lstChild;
     private NavigationManager navigationManager;
 
 
@@ -190,7 +191,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         //lstChild = new TreeMap<>();
-        lstChild = new HashMap<>();
+        lstChild = new LinkedHashMap<>();
         lstChild.put(title.get(0),childitem2);
         lstChild.put(title.get(1),childitem);
         lstChild.put(title.get(2),childitem);
