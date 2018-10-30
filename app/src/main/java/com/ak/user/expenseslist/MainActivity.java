@@ -175,13 +175,14 @@ public class MainActivity extends AppCompatActivity
 
     private void genData()
     {
-        List<String> title = Arrays.asList("Android Programing","Xamarin Programing","iOS Programing" );
+        List<String> title = Arrays.asList("Android Programing","iOS Programing" ,"Xamarin Programing");
         List<String> childitem = Arrays.asList("Beginner","Intermediate","Advanced","Professional");
 
-        lstChild = new TreeMap<>();
+        lstChild = new TreeMap<String, List<String>>();
         lstChild.put(title.get(0),childitem);
         lstChild.put(title.get(1),childitem);
         lstChild.put(title.get(2),childitem);
+
 
         lstTitle = new ArrayList<>(lstChild.keySet());
 
@@ -190,7 +191,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initItems()
     {
-        items = new String[] {"Android Programing","Xamarin Programing","iOS Programing"};
+        items = new String[] {"Android Programing","iOS Programing" ,"Xamarin Programing"};
     }
 
     @Override
