@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity
 
     private void initItems()
     {
-        items = new String[] {"Android Programing","iOS Programing","Xamarin Programing"};
+        items = new String[] {"Операции","iOS Programing","Xamarin Programing"};
     }
 
     @Override
