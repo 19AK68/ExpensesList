@@ -1,7 +1,10 @@
 package com.ak.user.expenseslist;
 
 import android.content.res.Configuration;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,9 +17,13 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 import com.ak.user.expenseslist.Adapter.CustomExpandableListAdapter;
+import com.ak.user.expenseslist.DataBase.DbAdapter;
+import com.ak.user.expenseslist.DataBase.DbHelper;
+import com.ak.user.expenseslist.FragmentContent.OperationsFragment;
 import com.ak.user.expenseslist.Helper.FragmentNavigationManager;
 import com.ak.user.expenseslist.Interface.NavigationManager;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,7 +45,12 @@ public class MainActivity extends AppCompatActivity
     private LinkedHashMap<String,List<String>> lstChild;
     private NavigationManager navigationManager;
 
+    private DbHelper dbHelper;
+    private SQLiteDatabase mDb;
 
+    private DbAdapter dbAdapter;
+
+    public static final String OPERATION_TYPE = "com.ak.user.expenseslist. operationType";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -71,6 +83,22 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setTitle("AK");
+
+
+
+        dbHelper = new DbHelper(this);
+
+        try {
+            dbHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
+
+        try {
+            mDb = dbHelper.getWritableDatabase();
+        } catch (SQLException mSQLException) {
+            throw mSQLException;
+        }
 
     }
 
@@ -163,6 +191,13 @@ public class MainActivity extends AppCompatActivity
 
                 } else
                     throw new IllegalArgumentException("No supported fragnent");
+
+
+                //-------------
+
+                Fragment fragment = new OperationsFragment();
+                Bundle args = new Bundle();
+                args.putInt();
 
                 drawerLayout.closeDrawer(GravityCompat.START);
 
