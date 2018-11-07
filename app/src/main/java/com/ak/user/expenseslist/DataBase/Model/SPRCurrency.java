@@ -3,11 +3,7 @@ package com.ak.user.expenseslist.DataBase.Model;
 public class SPRCurrency
 {
 
-
     private int id;
-
-
-
     private String  name;
 
     //conctructor

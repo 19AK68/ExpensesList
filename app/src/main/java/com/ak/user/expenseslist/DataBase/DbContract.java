@@ -4,6 +4,8 @@ import android.provider.BaseColumns;
 
 import com.ak.user.expenseslist.DataBase.Model.SPROperationType;
 
+import static com.ak.user.expenseslist.DataBase.DbContract.SPRCurrency.TABLE_NAME_Currency;
+import static com.ak.user.expenseslist.DataBase.DbContract.SPROperationSource.TABLE_NAME_OperationSource;
 import static com.ak.user.expenseslist.DataBase.DbContract.SPROperationType.TABLE_NAME_OperationType;
 
 public class DbContract
@@ -34,7 +36,7 @@ public class DbContract
 
         public final static String CREATE_spr_operationSource = "CREATE TABLE " + TABLE_NAME_OperationSource + " ("
                 + _id + "INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT,"
-                +  name + "NVARCHAR NOT NULL,"
+                +  name + "TEXT NOT NULL,"
                 + type_id + "INTEGER,"
                 + "CONSTRAINT fk_type" + "FOREIGN KEY (" + _id + ")" + "REFERENCES" + TABLE_NAME_OperationType + "(" + _id + ")"+ "ON DELETE RESTRICT ON UPDATE CASCADE );" ;
 
@@ -50,7 +52,8 @@ public class DbContract
 
         public final static String CREATE_spr_Currency = "CREATE TABLE " + TABLE_NAME_Currency + " ("
                 + _id + "INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT,"
-                +  name + "NVARCHAR NOT NULL);";
+                +  name + "TEXT NOT NULL);";
+
 
     }
 
@@ -66,11 +69,16 @@ public class DbContract
 
 
 
-        public final static String CREATE_spr_Currency = "CREATE TABLE " + TABLE_NAME_OPERATION + " ("
+        public final static String DB_CREATE = "CREATE TABLE " + TABLE_NAME_OPERATION + " ("
                 + _id + "INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT,"
-                + date_operation + "DATETIME NOT NULL,"
+                + date_operation + "TEXT NOT NULL,"
                 + amount + "INTEGER NOT NULL,"
-                + type_id + "INTEGER NOT NULL"
+                + type_id + "INTEGER NOT NULL,"
+                + "CONSTRAINT fk_type" + "FOREIGN KEY (" + type_id + ")" +  "REFERENCES" + TABLE_NAME_OperationType + "(" + _id + ")"+ "ON DELETE RESTRICT ON UPDATE CASCADE,"
+                + currency_id + "INTEGER NOT NULL,"
+                + "CONSTRAINT fk_currency" + "FOREIGN KEY (" + currency_id + ")" +  "REFERENCES" + TABLE_NAME_Currency  + "(" + _id + ")"+ "ON DELETE RESTRICT ON UPDATE CASCADE,"
+                + source_id + "INTEGER NOT NULL,"
+                + "CONSTRAINT fk_source" + "FOREIGN KEY (" + type_id + ")" +  "REFERENCES" + TABLE_NAME_OperationSource+ "(" + _id + ")"+ ");";
 
     }
 

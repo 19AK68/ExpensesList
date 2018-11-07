@@ -4,9 +4,6 @@ public class SPROperationType
 {
 
     private int id;
-
-
-
     private String  name;
 
     //conctructor
