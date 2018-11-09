@@ -14,6 +14,7 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
 import com.ak.user.expenseslist.Adapter.CustomExpandableListAdapter;
+import com.ak.user.expenseslist.DataBase.DbAdapter;
 import com.ak.user.expenseslist.Helper.FragmentNavigationManager;
 import com.ak.user.expenseslist.Interface.NavigationManager;
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private String mActivityTitle;
-    private String[] items;
+    private String [] items;
 
     private ExpandableListView expandableListView;
     private ExpandableListAdapter expandableListAdapter;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity
     private LinkedHashMap<String,List<String>> lstChild;
     private NavigationManager navigationManager;
 
+    private DbAdapter dbAdapter;
 
 
     @Override
@@ -69,7 +71,11 @@ public class MainActivity extends AppCompatActivity
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setTitle("AK");
+        getSupportActionBar().setTitle("Учет расходов ");
+
+        dbAdapter = new DbAdapter(this);
+        dbAdapter.createDatabaseInstance();
+        dbAdapter.getOperationsList();
 
     }
 
@@ -181,7 +187,12 @@ public class MainActivity extends AppCompatActivity
         title.add(getResources().getString(R.string.titel2));
         title.add(getResources().getString(R.string.titel3));
 
-        List<String> childitem = Arrays.asList("Beginner","Intermediate","Advanced","Professional");
+        List<String> childitem = new ArrayList<>();        //           Arrays.asList("Beginner","Intermediate","Advanced","Professional");
+
+        for(String child_common:getResources().getStringArray(R.array.menu_childs_item_common))
+        {
+            childitem.add(child_common);
+        }
 
         List<String> childitem2 = new ArrayList<>();
         for(String child2:getResources().getStringArray(R.array.menu_childs_item))
@@ -201,7 +212,14 @@ public class MainActivity extends AppCompatActivity
 
     private void initItems()
     {
-        items = new String[] {"Android Programing","iOS Programing","Xamarin Programing"};
+
+
+        items = new String[] {"Операции","Меню 2", "Меню 3"};
+
+        /*items.add(getResources().getString(R.string.titel1));       //new String[] {"Операции","Меню 2", "Меню 3"}; // {"Android Programing","iOS Programing","Xamarin Programing"};
+        items.add(getResources().getString(R.string.titel2));
+        items.add(getResources().getString(R.string.titel3));*/
+
     }
 
     @Override
@@ -215,7 +233,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        int id = item.getItemId();
+       // int id = item.getItemId();
 
         if(mDrawerToggle.onOptionsItemSelected(item))
         {

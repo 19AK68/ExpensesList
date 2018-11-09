@@ -22,8 +22,8 @@ public class DbContract
 
 
        public final static String CREATE_spr_operationType = "CREATE TABLE " + TABLE_NAME_OperationType+ " ("
-                + _id + "INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT,"
-                +  name + "NVARCHAR NOT NULL);";
+                + _id + " INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT,"
+                +  name + " NVARCHAR NOT NULL);";
     }
 
     public static final class SPROperationSource implements BaseColumns
@@ -35,10 +35,10 @@ public class DbContract
 
 
         public final static String CREATE_spr_operationSource = "CREATE TABLE " + TABLE_NAME_OperationSource + " ("
-                + _id + "INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT,"
-                +  name + "TEXT NOT NULL,"
-                + type_id + "INTEGER,"
-                + "CONSTRAINT fk_type" + "FOREIGN KEY (" + _id + ")" + "REFERENCES" + TABLE_NAME_OperationType + "(" + _id + ")"+ "ON DELETE RESTRICT ON UPDATE CASCADE );" ;
+                + _id + " INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT,"
+                +  name + " TEXT NOT NULL, "
+                + type_id + " INTEGER,"
+                + " CONSTRAINT fk_type" + " FOREIGN KEY (" + _id + ")" + " REFERENCES " + TABLE_NAME_OperationType + "(" + _id + ")"+ " ON DELETE RESTRICT ON UPDATE CASCADE );" ;
 
     }
 
@@ -51,8 +51,8 @@ public class DbContract
 
 
         public final static String CREATE_spr_Currency = "CREATE TABLE " + TABLE_NAME_Currency + " ("
-                + _id + "INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT,"
-                +  name + "TEXT NOT NULL);";
+                + _id + " INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT, "
+                +  name + " TEXT NOT NULL);";
 
 
     }
@@ -65,20 +65,20 @@ public class DbContract
         public final static String amount = "amount";
         public final static String type_id = "type_id";
         public final static String currency_id = "currency_id";
-        public final static String source_id = "type_id";
+        public final static String source_id = "source_id";
 
 
 
         public final static String DB_CREATE = "CREATE TABLE " + TABLE_NAME_OPERATION + " ("
-                + _id + "INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT,"
-                + date_operation + "TEXT NOT NULL,"
-                + amount + "INTEGER NOT NULL,"
-                + type_id + "INTEGER NOT NULL,"
-                + "CONSTRAINT fk_type" + "FOREIGN KEY (" + type_id + ")" +  "REFERENCES" + TABLE_NAME_OperationType + "(" + _id + ")"+ "ON DELETE RESTRICT ON UPDATE CASCADE,"
-                + currency_id + "INTEGER NOT NULL,"
-                + "CONSTRAINT fk_currency" + "FOREIGN KEY (" + currency_id + ")" +  "REFERENCES" + TABLE_NAME_Currency  + "(" + _id + ")"+ "ON DELETE RESTRICT ON UPDATE CASCADE,"
-                + source_id + "INTEGER NOT NULL,"
-                + "CONSTRAINT fk_source" + "FOREIGN KEY (" + type_id + ")" +  "REFERENCES" + TABLE_NAME_OperationSource+ "(" + _id + ")"+ ");";
+                + _id + " INTEGER PRIMARY KEY ON CONFLICT FAIL AUTOINCREMENT, "
+                + date_operation +  " TEXT NOT NULL, "
+                + amount + " INTEGER NOT NULL, "
+                + type_id + " INTEGER NOT NULL,"
+                + currency_id + " INTEGER NOT NULL,"
+                + source_id + " INTEGER NOT NULL,"
+                + " CONSTRAINT fk_type " + "FOREIGN KEY (" + type_id + ")" +  " REFERENCES " + TABLE_NAME_OperationType + "(" + _id + ")"+ " ON DELETE RESTRICT ON UPDATE CASCADE, "
+                + " CONSTRAINT fk_currency " + " FOREIGN KEY (" + currency_id + ")" +  " REFERENCES " + TABLE_NAME_Currency  + "(" + _id + ")"+ " ON DELETE RESTRICT ON UPDATE CASCADE, "
+                + " CONSTRAINT fk_source " + " FOREIGN KEY (" + source_id + ")" +  " REFERENCES " + TABLE_NAME_OperationSource+ "(" + _id + ")"+ ");";
 
     }
 

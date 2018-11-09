@@ -10,7 +10,7 @@ import com.ak.user.expenseslist.DataBase.Model.SPROperationType;
 public class DbHelper extends SQLiteOpenHelper
 {
 
-    private static final String TAG = "LOG";
+    public static final String TAG = "LOG";
     public static final String DB_NAME = "money.db";
     public static final int DB_VERSION = 1;
 
